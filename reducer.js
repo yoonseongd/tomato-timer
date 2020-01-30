@@ -47,6 +47,8 @@ function reducer(state = initialState, action) {
       return applyRestartTimer(state);
     case ADD_SECOND:
       return applyAddSecond(state);
+    default:
+      return state;
   }
 }
 
@@ -72,15 +74,15 @@ function applyAddSecond(state) {
     return {
       ...state,
       elapsedTime: state.elapsedTime + 1
-      //유상이가 만들어준 배율 타이머 기능을 써도 되고
-      //여기 applyAddSecond 함수를
-      //fact=체감/실제시간 초마다 불러오는걸로 바꿔서 redux로 써도된다.
-      //유상이가 만든 함수 처럼 count++을 fact초마다 불러오는거랑 같은 논리임
-      //setinterval(applyAddSecond, fact) 이런식으로
-      //또는 사용자가 입력한 fact=(체감시간/실제시간)을 import해서
-      //위의 elapsedTime: state.elapsedTime + 1 대신에
+      // 유상이가 만들어준 배율 타이머 기능을 써도 되고
+      // 여기 applyAddSecond 함수를
+      // fact=체감/실제시간 초마다 불러오는걸로 바꿔서 redux로 써도된다.
+      // 유상이가 만든 함수 처럼 count++을 fact초마다 불러오는거랑 같은 논리임
+      // setinterval(applyAddSecond, fact) 이런식으로
+      // 또는 사용자가 입력한 fact=(체감시간/실제시간)을 import해서
+      // 위의 elapsedTime: state.elapsedTime + 1 대신에
       //     elapsedTime: state.elapsedTime + fact 해도 된다.
-      //대신에 이 두번째 방법은 스크린에 1초가 느는게 아니라 1.몇초가 더해지겠지.
+      // 대신에 이 두번째 방법은 스크린에 1초가 느는게 아니라 1.몇초가 더해지겠지.
     };
   } else {
     return {
@@ -99,6 +101,8 @@ const actionCreators = {
   restartTimer,
   addSecond
 };
+
+export { actionCreators };
 
 //Export Reducer
 
